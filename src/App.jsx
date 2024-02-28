@@ -1,19 +1,20 @@
-import {
-  RecoilRoot,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-import { countState } from "../store/atoms/count";
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
+import { countState, isEven } from "../store/atoms/count";
 
 function App() {
   return (
     <div>
       <RecoilRoot>
         <Count />
+        <IsEven />
       </RecoilRoot>
     </div>
   );
+}
+
+function IsEven() {
+  let checkforEven = useRecoilValue(isEven);
+  return <>{checkforEven}</>;
 }
 
 function Count() {
