@@ -1,26 +1,9 @@
-import { atom, selectorFamily } from "recoil";
+import { atomFamily } from "recoil";
+import todoList from "../../src/todoList";
 
-let todoList = atom({
-  key: "todoAtom",
-  default: [
-    {
-      name: "play cricket",
-      id: 0,
-    },
-    {
-      name: "study DSA",
-      id: 1,
-    },
-  ],
-});
-
-export const filteredTodoListState = selectorFamily({
-  key: "FilteredTodoList",
-
-  get:
-    (id) =>
-    ({ get }) => {
-      const list = get(todoList);
-      return list.filter((item) => item.id === id);
-    },
+export let todoAtomFamily = atomFamily({
+  key: "todoAtomFamily",
+  default: (id) => {
+    return todoList.find((x) => x.id === id);
+  },
 });
