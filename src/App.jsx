@@ -1,65 +1,11 @@
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil";
-import { countState, isEven } from "../store/atoms/count";
+import { useRecoilValue } from "recoil";
+import { filteredTodoListState } from "../store/atoms/todo";
 
-function App() {
-  return (
-    <div>
-      <RecoilRoot>
-        <Count />
-        <IsEven />
-      </RecoilRoot>
-    </div>
-  );
-}
+const App = () => {
+  const todoItem = useRecoilValue(filteredTodoListState(0));
+  console.log(todoItem);
 
-function IsEven() {
-  let checkforEven = useRecoilValue(isEven);
-  return <>{checkforEven}</>;
-}
-
-function Count() {
-  console.log("re-render");
-  return (
-    <div>
-      <CountRenderer />
-      <Buttons />
-    </div>
-  );
-}
-
-function CountRenderer() {
-  const count = useRecoilValue(countState);
-
-  return (
-    <div>
-      <b>{count}</b>
-    </div>
-  );
-}
-
-function Buttons() {
-  console.log("buttons re-rendererd");
-  let setCount = useSetRecoilState(countState);
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setCount((count) => count + 1);
-        }}
-      >
-        Increase
-      </button>
-
-      <button
-        onClick={() => {
-          setCount((count) => count - 1);
-        }}
-      >
-        Decrease
-      </button>
-    </div>
-  );
-}
+  return <div>App</div>;
+};
 
 export default App;

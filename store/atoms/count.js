@@ -13,3 +13,14 @@ export const isEven = selector({
     return counter % 2 === 0 ? "even number" : "";
   },
 });
+
+async function abc() {
+  let res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+}
+export const userQuery = selector({
+  key: "CurrentUserName",
+  get: async () => {
+    return await abc();
+  },
+});
